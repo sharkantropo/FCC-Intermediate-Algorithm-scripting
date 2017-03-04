@@ -1,0 +1,55 @@
+Sum all the prime numbers up to and including the provided number.
+
+A prime number is defined as a number greater than one and having only two divisors, one and itself. For example, 2 is a prime number because it's only divisible by one and two.
+
+The provided number may not be a prime.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SOLUTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+function sumPrimes(num) {
+  // To complete this challenge, We only need an array and a variable that will contain the total sum of prime numbers.
+  var onlyPrime= [], sum;
+  
+  // A function to validate whether is prime or not.
+    function isPrime(primen)
+  {
+    var validator=true;
+    for(var i=2; i<primen; i++)
+      {
+       // Break is critical, you definitely will want to end the loop not sooner the iteration finds a divisible number lower than the prime number. 
+        if(primen%i === 0)
+          {
+            validator=false;
+            break;
+          }
+      
+      }
+    return validator;
+  }
+  
+   // Added a conditional only to make sure to include 2 into the array.  
+  for(var i=2; i<=num; i++)
+    {
+         if(i === 2)
+         {
+           onlyPrime.push(i);
+           continue;
+         }
+     // For the rest of prime number, We call the function to find out.
+          else if(isPrime(i))
+         {
+             onlyPrime.push(i);
+         }
+      
+    }
+  
+  // Afterwards, sum every element within the array.
+  sum = onlyPrime.reduce(function(a, b) {
+  return a + b;
+   }, 0);
+  
+  // return the result.
+  return sum;
+}
+
+sumPrimes(10);
