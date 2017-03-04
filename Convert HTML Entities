@@ -1,0 +1,21 @@
+Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
+
+****************SOLUTION***************************
+function convertHTML(str) {
+  // &colon;&rpar;
+  // basic way to use regular expressions
+  var re=/&/g;
+  str=str.replace(re,"&amp;");
+  re=/</g;
+  str=str.replace(re,"&lt;");
+  re=/>/g;
+  str=str.replace(re,"&gt;");
+  re=/"/g;
+  str=str.replace(re,"&quot;");
+  re=/'/g;
+  str=str.replace(re,"&apos;");
+  
+  return str;
+}
+
+convertHTML('Stuff in "quotation marks"');
