@@ -1,0 +1,12 @@
+Create a function that looks through an array (first argument) and returns the first element in the array that passes a truth test (second argument).
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SOLUTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function findElement(arr, func) {
+  var num = 0;
+  //Quite straightforward, filter method will return an array of matching values.
+  num=arr.filter(func);
+  //Since it only has to return the first match. Then the first element of the array is the only one delivered.
+  return num[0];
+}
+
+findElement([1, 3, 5, 8,9,10], function(num){ return num % 2 === 0; });
