@@ -1,0 +1,47 @@
+Perform a search and replace on the sentence using the arguments provided and return the new sentence.
+
+First argument is the sentence to perform the search and replace on.
+
+Second argument is the word that you will be replacing (before).
+
+Third argument is what you will be replacing the second argument with (after).
+
+NOTE: Preserve the case of the original word when you are replacing it. For example if you mean to replace the word "Book" with the word "dog", it should be replaced as "Dog".
+
+function myReplace(str, before, after) {
+  
+  // let's declare a few variables that might come in handy. "re" is going to contain a regex, "placeholder" will replace the target word with another string in order to use the regular expression properly. "index" only purpose is to spot the word's location within the sentence.
+  var re,placeholder= "before", index;
+  // Split the sentences into an array and then loop through it to find the matched index.
+    str=str.split(" ");
+  for(var i=0; i<str.length;i++)
+   {
+     if(str[i] === before)
+       {
+         index=i;
+         
+       }
+    
+  }
+  // This code below is just to make sure variable "after" will preserve the case of the original word. Since the challenge is only taking the case of the string's first character as relevant, the code will only modify the string var after only if first char in before is Uppercase.
+  
+  if(before[0] == before[0].toUpperCase())
+    {
+      after=after.split("");
+      after[0]= after[0].toUpperCase();
+      after=after.join("");
+      
+    }
+  // Now, we modify str, replacing the matched word with the placeholder word "before". 
+   str.splice(index,1,"before");
+  
+  
+  // We merge the array into a sentence and use String.prototype.replace to change the placeholder for the string var after.
+  str=str.join(" ");
+  re=/before/i;
+  str=str.replace(re,after);
+  
+  
+  
+  return str;
+}
