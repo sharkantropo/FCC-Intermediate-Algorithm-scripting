@@ -1,0 +1,30 @@
+Write a function that takes two or more arrays and returns a new array of unique values in the order of the original provided arrays.
+
+In other words, all values present from all arrays should be included in their original order, but with no duplicates in the final array.
+
+The unique numbers should be sorted by their original order, but the final array should not be sorted in numerical order.
+
+Check the assertion tests for examples.
+
+
+function uniteUnique(arr) {
+  // sigh, another loop fest. Oh well
+  var uniteArray = [];
+
+// Since we don't know how many arguments have been passed down to this function. We have to put every of them inside another array with help of local array-like object arguments. One argument every iteration...
+  for (var i = 0; i < arguments.length; i++) {
+    var arrayArgument = arguments[i];
+    
+    // Iteratin' through the taken argument. A value from the current index of array ArrayArgument shall be assigned to index.
+    for (var j = 0; j < arrayArgument.length; j++) {
+      var index = arrayArgument[j];
+      
+      // indexOf return -1 when the value doesn't exist.This is convenient, thereby nothing that already exists will be pushed inside uniteArray.
+      if (uniteArray.indexOf(index) === -1) {
+        uniteArray.push(index);
+      }
+    }
+  }
+// return the outcome.
+  return uniteArray;
+}
