@@ -1,0 +1,48 @@
+Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+
+The range will be an array of two numbers that will not necessarily be in numerical order.
+
+e.g. for 1 and 3 - find the smallest common multiple of both 1 and 3 that is evenly divisible by all numbers between 1 and 3.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SOLUTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+function smallestCommons(arr) {
+  // In order to find the smallest common multiple within a range of number, we are going to need several variables.
+  var ranArr= [],mult=0,n,multiplier=1,maxIndex,lowIndex;
+  // Sort them out for convenience wise.
+  arr=arr.sort();
+  
+  // And then, create a new array by putting the range of numbers in.
+  for(var i=arr[0]; i <= arr[1]; i++)
+    {
+      ranArr.push(i);
+    }
+  // We can find out common multiples with the resulting product of multilying the two highest numbers of the range.
+  maxIndex= ranArr.length-1;
+  lowIndex= ranArr.length-2;
+  
+  do
+     {
+       // mult eventually will contain the smallest common multiple. Multiplier will increase the value after every loop. 
+      mult=ranArr[maxIndex]*multiplier*ranArr[lowIndex];
+      for( n= 0; n < (ranArr.length-2); n++)
+          {
+            //If mult is not divisible by all of the numbers within the reach. The code will break the current for loop and move on onto another.
+             if( mult%ranArr[n] !== 0)
+               {
+                 break;
+               }
+          
+          }
+     //But before moving to another loop, it will increase the value of multiplier by 1.
+       multiplier++;  
+    }
+    while(n !== ranArr.length-2);
+  
+  return mult;
+}
+
+
+smallestCommons([1,5]);
