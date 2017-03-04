@@ -1,0 +1,50 @@
+Make a function that looks through an array of objects (first argument) and returns an array of all objects that have matching property and value pairs (second argument). Each property and value pair 
+of the source object has to be present in the object from the collection if it is to be included in the returned array.
+
+For example, if the first argument is [{ first: "Romeo", last: "Montague" }, 
+{ first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], and the second argument is 
+{ last: "Capulet" }, then you must return the third object from the array (the first argument),
+because it contains the property and its value, that was passed on as the second argument.
+
+!!!!!!!!!!!!!! SOLUTION !!!!!!!!!!!!!!!!
+
+
+function whatIsInAName(collection, source) {
+  // What's in a name?
+  var arr = [];
+  // Only change code below this line
+  
+  //Fine, if I only can change code within these lines, then I'll declare some variables here then, hope FCC don't mind ;). var aux is an array to store Object source's keys inside. var istrue shall perform as a "check" to verify whether a collection's object match or not.
+  var aux=Object.keys(source);  
+  var istrue;
+  
+ // Now we loop through the collection object. 
+  for(var i in collection)
+    {
+      // And a second loop through the array of keys to verify if every key and its value exists in one or more objects of the array collection.
+      for (var j=0; j<aux.length; j++)
+        {
+          // This conditional will only return istrue=true if both property and its value contained in source also exists inside certain object in the array collection.
+           if ((collection[i].hasOwnProperty(aux[j])) && (source[aux[j]] === collection[i][aux[j]])) 
+         {
+        
+           istrue=true;
+        
+         }
+         // Just to clarify, every property of source has to also exists within an object from collection to be put inside arr. Otherwise it will eventually return false; 
+          else
+            {istrue=false;}
+        }
+      if(istrue)
+        {
+          // put an object that meets the requirements inside.
+          arr.push(collection[i]);
+          
+        }
+      
+      
+    }
+   
+  // Only change code above this line
+  return arr;
+}
