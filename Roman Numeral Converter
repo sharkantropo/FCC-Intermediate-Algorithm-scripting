@@ -1,0 +1,62 @@
+Convert the given number into a roman numeral. All roman numerals should be provided in uppercase.
+
+
+*******SOLUTION*********
+
+function convertToRoman(num) {
+  var arrNum,output= [], cent,index;
+  // Firstly, We are going to need an Array of roman values. Hardcoding 4 the win! Also, We'll need an auxiliar array with int value. These guys have the same length and their indexes match; thus roman [0] = I and auxArr[0]= 1.. 
+ var roman= ["I","II","III","IV","V","VI","VII","VIII","IX","X","XX","XXX","XL","L","LX","LXX","LXXX","XC","C","CC","CCC","CD","D","DC","DCC","DCCC","CM","M","MM","MMM"], auxArr=[1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000,2000,3000];
+  
+// Now, Now. Let's convert that int number into a string.
+  arrNum=num.toString();
+  
+// Afterwards, the code shall run this cycle to revert every single string into a number, and as result, we also obtain an array of one digit numbers. "ex. arrNum=["38"] ===> output=[3,8]".
+  for (var i = 0; i < arrNum.length; i ++) 
+  {
+    output.push(+arrNum.charAt(i));
+  }
+  
+  // Now, the code will multiply every digit contained into the Array, excluding the one located onto the last index of the array; 10,100 or 1000 depending of how many digits composed this function argument. 
+  
+  if(output.length == 2)
+    {
+      cent=10;
+            for (i=0; i < output.length-1; i++)
+              {
+                  output[i]=output[i]*cent;
+              }
+    }
+  
+  if(output.length == 3)
+    {
+      cent=100;
+            for (i=0; i < output.length-1; i++)
+              {
+                  output[i]=output[i]*cent;
+                  cent=cent/10;
+              }
+    }
+  
+  if(output.length == 4)
+    {
+      cent=1000;
+            for (i=0; i < output.length-1; i++)
+              {
+                 output[i]=output[i]*cent;
+                  cent=cent/10;
+              }
+    }
+  
+  // Neato, we have an array ready to be transformed into roman numbers!. Finally, It's time to bring the conversion into fruition.
+  
+  for(i=0; i<output.length;i++)
+      {
+      index=auxArr.indexOf(output[i]);
+      output.splice(i,1,roman[index]);
+      
+     }
+   output=output.join("");
+  
+ return output;
+}
