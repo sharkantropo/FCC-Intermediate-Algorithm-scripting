@@ -11,19 +11,20 @@ function sumAll(arr) {
   
   var a= arr[0], b= arr[1], z, x, arrSum= [ ];
   
+// The Math.max() function returns the largest of zero or more numbers.
   z= Math.max(a,b);
-  
+// Math.min() does the opposite of Math.max().
+
   x= Math.min(a,b);
-  
+ // The max value is introduced first
   arrSum.push(z);
-  
+ // And the numbers between z and x are introduced afterwards.  
   while(z>x)
     {
       z-=1;
       arrSum.push(z);
-      
     }
-  
+  // This implementation  of Array.prototype.reduce() performs the total sum.
   var sum= arrSum.reduce(function(a, b) 
                                {
            return a + b;
