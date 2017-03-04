@@ -1,0 +1,55 @@
+Translate the provided string to pig latin.
+
+Pig Latin takes the first consonant (or consonant cluster) of an English word, moves it to the end of the word and suffixes an "ay".
+
+If a word begins with a vowel you just add "way" to the end.
+
+Input strings are guaranteed to be English words in all lowercase.
+
+
+
+function translatePigLatin(str) {
+  var char= "", char2= "";
+ // Let's pick the first chars. 
+  char=str[0];
+  char2=str[1];
+   
+  
+  //First conditional is for vowels.
+  if(char == "a" || char == "e" || char == "i" || char == "o" || char == "u")
+    {
+      str=str.split("");
+      str.push("w");
+      str.push("a");
+      str.push("y");
+      str=str.join("");
+      
+      
+    }
+  // Second one is for cluster consonants.
+  else if((char !== "a" && char !== "e" && char !== "i" && char !== "o" && char !== "u") && (char2 !== "a" && char2 !== "e" && char2 !== "i" && char2 !== "o" && char2 !== "u"))
+  {
+      str=str.substr(2);
+      str=str.split("");
+      str.push(char);
+      str.push(char2);
+      str.push("a");
+      str.push("y");
+      str=str.join("");
+    
+    
+  }
+  // and finally, the last one is for those cases that begin with a consonant but have a vowel in second place.
+  else if(char2 == "a" || char2 == "e" || char2 == "i" || char2 == "o" || char2 == "u")
+  
+  {
+      str=str.substr(1);
+      str=str.split("");
+      str.push(char);
+      str.push("a");
+      str.push("y");
+      str=str.join("");
+    }
+  
+  return str;
+}
