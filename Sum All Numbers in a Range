@@ -1,0 +1,35 @@
+
+We'll pass you an array of two numbers. Return the sum of those two numbers and all numbers between them.
+
+The lowest number will not always come first.
+
+
+---------------------------------------Solution---------------------------------------------------------
+
+function sumAll(arr) {
+// First, some variables are declare to accomplish our purposes.
+  
+  var a= arr[0], b= arr[1], z, x, arrSum= [ ];
+  
+  z= Math.max(a,b);
+  
+  x= Math.min(a,b);
+  
+  arrSum.push(z);
+  
+  while(z>x)
+    {
+      z-=1;
+      arrSum.push(z);
+      
+    }
+  
+  var sum= arrSum.reduce(function(a, b) 
+                               {
+           return a + b;
+   }, 0);
+  
+  return sum;
+}
+
+sumAll([1, 4]);
