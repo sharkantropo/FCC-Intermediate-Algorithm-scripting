@@ -1,0 +1,29 @@
+Find the missing letter in the passed letter range and return it.
+
+If all letters are present in the range, return undefined.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SOLUTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+function fearNotLetter(str) 
+{
+  // This one is plain simple, we just need two aditional variables.
+  var substract,missLetter;    
+  
+  // We iterate thru the string and substract the current index with the next index.
+  
+  for (var i=0; i<str.length; i++)
+    {
+        substract=str.charCodeAt(i+1)-str.charCodeAt(i);
+      // If the result is not one, then there is a missing letter within the current sequence.
+        if(substract === 2)
+          { 
+            //the missing one is going to be between the current index and the next index. Thus its char code is one plus the unicode of the current character.
+            missLetter=str.charCodeAt(i)+1;
+            // We transform the unicode it into the corresponding character and c'est terminé. 
+            missLetter=String.fromCharCode(missLetter); 
+          }
+      
+    }
+  return missLetter;
+}
