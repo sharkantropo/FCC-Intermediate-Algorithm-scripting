@@ -1,0 +1,35 @@
+Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. 
+In other words, return the symmetric difference of the two arrays.
+
+***********SOLUTION*******************
+
+
+function diffArray(arr1, arr2) {
+  var newArr = [], comBarr= [];
+
+//
+  for (var i=0; i<arr1.length; i++)
+    {
+    // indexOf() method returns -1 if the element is not present within an array. In this case, it will return -1 when an element
+    from arr1 is not present on arr2.
+      if(arr2.indexOf(arr1[i]) === -1)
+         {
+            // It'll push the different value in comBarr array.
+            comBarr.push(arr1[i]);
+         }
+    }
+  
+   for (var j=0; j<arr2.length; j++)
+    {
+    // This ones is to verify whether an existing element in arr2 is present in arr1 or not. 
+      if(arr1.indexOf(arr2[j]) === -1)
+         {
+            
+            comBarr.push(arr2[j]);
+         }
+      
+    }
+  //Finally, it returns the symmetric difference.
+  
+  return comBarr;
+}
