@@ -1,0 +1,45 @@
+Return an English translated sentence of the passed binary string.
+
+The binary string will be space separated.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SOLUTION!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+function binaryAgent(str) 
+{
+  var codeASCII=[],bincode,sum,power, reduce,stringAscii=[],curCode;
+  // First, is convenient to transform the string chain into an array.
+  str=str.split(" ");
+  for(var i=0; i<str.length; i++)
+    {
+        bincode=str[i];
+     // Var sum is initialized.
+        sum=0;
+     // The 0 and 1 from  the binary code are "translated" into numbers in order to obtain the ASCII code.
+      for(var j=0; j <bincode.length ;j++)
+        {
+             reduce=7-j;
+             if(bincode[reduce] === "1")
+             {
+               power=Math.pow(2,j);
+               sum=sum+power;        
+             }
+        }
+      // The resulting value is pushed afterwards. 
+       codeASCII.push(sum);
+    }
+ // With fromCharCode method. The desired characters are obtained and put together.
+  for( i=0; i<codeASCII.length;i++)
+     { 
+        curCode=String.fromCharCode(codeASCII[i]);
+        stringAscii.push(curCode);
+     }
+      
+  stringAscii=stringAscii.join("");
+  str=stringAscii;
+ return str;
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+
+//binaryAgen
