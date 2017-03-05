@@ -1,0 +1,50 @@
+Check if the predicate (second argument) is truthy on all elements of a collection (first argument).
+
+Remember, you can access object properties through either dot notation or [] notation.
+
+
+!!!!!!!!!!!!!SOLUTION!!!!!!!!!!!!!!!
+
+function truthCheck(collection, pre) {
+  // Is everyone being true?
+  var prop,istrue=false;
+  // This double cycle will check whether the property exists or not on all elements of collection object.
+  for( var i=0; i<collection.length; i++)
+      {
+        prop=Object.getOwnPropertyNames(collection[i]);
+         for(var j=0; j<prop.length; j++) 
+              { 
+                if(prop[j] === pre)
+                  {
+                    istrue=true;
+                    break;
+                  }
+                  istrue=false;
+              }
+         if(istrue === false)
+           {
+             break;
+           }
+      }
+  // When done, it will return true or false. If true, then code will proceed to verify whether the property has a valid value ( is not zero, null,NaN, empty ). If false, then everything is done and return false.
+  if(istrue)
+     {
+        for(i=0;i<collection.length;i++)
+          {
+              if(collection[i][pre] === 0 || collection[i][pre] === null || (isNaN(collection[i][pre]) && typeof(collection[i][pre]) !== 'string')|| collection[i][pre] === "" || collection[i][pre] === undefined  )
+                 {
+                   istrue= false;
+                   break;
+                 }
+          }
+     }
+
+  
+  return istrue;
+}
+
+truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+
+truthCheck([{"single": "yes"}], "single");
+
+
