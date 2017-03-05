@@ -1,0 +1,51 @@
+Flatten a nested array. You must account for varying levels of nesting.
+
+!!!!!!!!!!!!!!Solution!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+function steamrollArray(arr) {
+  // I'm a steamroller, baby
+  var steamrolled= [],flatten,auxflatten;
+   for(var i=0;i<arr.length;i++)
+     {
+       if(Array.isArray(arr[i]))
+         {
+           // I don't know what I'm doing LOL!!!!111!!!!
+           for(var j=0;j<arr[i].length;j++)
+           {
+             // This nested loop is for deeper nested arrays. Like [[[4]]]
+             if(Array.isArray(arr[i][j]))
+               {
+                 flatten=arr[i][j];
+                 do
+                   {
+                     //this will update the same value several times until the first element is not an array anymore.
+                      auxflatten=flatten[0];
+                      flatten=auxflatten[0];
+                   }
+                   while(Array.isArray(flatten[0]));
+                   
+                    steamrolled.push(flatten);
+                     
+               }
+             else
+               {
+                 steamrolled.push(arr[i][j]);
+               }
+           }
+         }
+       else
+         {
+           steamrolled.push(arr[i]);
+           
+         }
+       
+     }
+  
+  // Now, the steamroll is nice and clean!..
+      return steamrolled;
+  }
+
+
+steamrollArray([1, [2], [3, [[4]]]]);
