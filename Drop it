@@ -1,0 +1,38 @@
+Drop the elements of an array (first argument), starting from the front, until the predicate (second argument) returns true.
+
+The second argument, func, is a function you'll use to test the first elements of the array to decide if you should drop it or not.
+
+Return the rest of the array, otherwise return an empty array.
+
+!!!!!!!!!!!!!!!!SOLUTION!!!!!!!!!!!!!!
+
+function dropElements(arr, func) {
+  // Drop them elements.
+  // Another simple and straightforward code. isMatch will contain the index of the first element that meets the conditions provided by the second arguments, and noNull is just a flag to tell the code wether a match is found or not.
+  var isMatch= [],noNull=0;
+  for(var i=0; i<arr.length; i++)
+    {
+      if(func(arr[i]))
+        {
+           isMatch=i;
+           noNull=1;
+           break;
+        }
+    }
+  // When a match is not found, it will return an empty arr array.
+   if( noNull === 0)
+     {
+        arr=isMatch;
+     }
+  // Otherwise it will return a shallow copy of the portion of the array that meets the requirements.
+   else
+     {
+       
+       arr=arr.slice(isMatch);
+       
+     }
+  
+  return arr;
+}
+
+dropElements([1, 2, 3], function(n) {return n < 3; });
